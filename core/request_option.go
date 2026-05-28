@@ -27,8 +27,6 @@ type RequestOptions struct {
 	MaxStreamReconnectAttempts uint
 	DisableStreamReconnection  bool
 	DisableRetries             bool
-	Token                      string
-	TokenFunc                  func() (string, error)
 }
 
 // NewRequestOptions returns a new *RequestOptions value.
@@ -49,17 +47,7 @@ func NewRequestOptions(opts ...RequestOption) *RequestOptions {
 
 // ToHeader maps the configured request options into a http.Header used
 // for the request(s).
-func (r *RequestOptions) ToHeader() http.Header {
-	header := r.cloneHeader()
-	if r.Token != "" {
-		header.Set("Authorization", "Bearer "+r.Token)
-	} else if r.TokenFunc != nil {
-		if token, err := r.TokenFunc(); err == nil && token != "" {
-			header.Set("Authorization", "Bearer "+token)
-		}
-	}
-	return header
-}
+func (r *RequestOptions) ToHeader() http.Header { return r.cloneHeader() }
 
 func (r *RequestOptions) cloneHeader() http.Header {
 	return r.HTTPHeader.Clone()
@@ -149,22 +137,4 @@ type WithoutRetriesOption struct{}
 
 func (w *WithoutRetriesOption) applyRequestOptions(opts *RequestOptions) {
 	opts.DisableRetries = true
-}
-
-// TokenOption implements the RequestOption interface.
-type TokenOption struct {
-	Token string
-}
-
-func (t *TokenOption) applyRequestOptions(opts *RequestOptions) {
-	opts.Token = t.Token
-}
-
-// TokenFuncOption implements the RequestOption interface.
-type TokenFuncOption struct {
-	TokenFunc func() (string, error)
-}
-
-func (t *TokenFuncOption) applyRequestOptions(opts *RequestOptions) {
-	opts.TokenFunc = t.TokenFunc
 }
