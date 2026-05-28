@@ -1,0 +1,20 @@
+name: regenerate
+
+on:
+  repository_dispatch:
+    types: [spec-updated]
+  workflow_dispatch:
+    inputs:
+      spec_sha:
+        description: "openapi-sdk commit SHA (default: main)"
+        required: false
+        default: "main"
+
+jobs:
+  regen:
+    uses: harshmaru7/sdk-pipeline/.github/workflows/generate.yml@main
+    with:
+      language: go
+      spec_sha: ${{ github.event.client_payload.sha || inputs.spec_sha || 'main' }}
+    secrets:
+      sdk_bot_pat: ${{ secrets.SDK_BOT_PAT }}
