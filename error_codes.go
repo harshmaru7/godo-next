@@ -3,7 +3,54 @@
 package api
 
 import (
+	core "github.com/harshmaru7/godo-next/core"
 	internal "github.com/harshmaru7/godo-next/internal"
 )
 
-var ErrorCodes internal.ErrorCodes = internal.ErrorCodes{}
+var ErrorCodes internal.ErrorCodes = internal.ErrorCodes{
+	401: func(apiError *core.APIError) error {
+		return &UnauthorizedError{
+			APIError: apiError,
+		}
+	},
+	429: func(apiError *core.APIError) error {
+		return &TooManyRequestsError{
+			APIError: apiError,
+		}
+	},
+	500: func(apiError *core.APIError) error {
+		return &InternalServerError{
+			APIError: apiError,
+		}
+	},
+	404: func(apiError *core.APIError) error {
+		return &NotFoundError{
+			APIError: apiError,
+		}
+	},
+	422: func(apiError *core.APIError) error {
+		return &UnprocessableEntityError{
+			APIError: apiError,
+		}
+	},
+	409: func(apiError *core.APIError) error {
+		return &ConflictError{
+			APIError: apiError,
+		}
+	},
+	400: func(apiError *core.APIError) error {
+		return &BadRequestError{
+			APIError: apiError,
+		}
+	},
+	403: func(apiError *core.APIError) error {
+		return &ForbiddenError{
+			APIError: apiError,
+		}
+	},
+	412: func(apiError *core.APIError) error {
+		return &PreconditionFailedError{
+			APIError: apiError,
+		}
+	},
+}
