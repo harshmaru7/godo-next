@@ -1,0 +1,15 @@
+{
+  "cliVersion": "5.38.1",
+  "generatorName": "fernapi/fern-go-sdk",
+  "generatorVersion": "1.42.3",
+  "generatorConfig": {
+    "module": {
+      "path": "github.com/harshmaru7/godo-next",
+      "version": "1.21"
+    }
+  },
+  "originGitCommit": "d4f1f560ad5205db35b198c625c85ed6989804a0",
+  "originGitCommitIsDirty": true,
+  "invokedBy": "ci",
+  "ciProvider": "github"
+}
