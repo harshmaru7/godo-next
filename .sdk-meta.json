@@ -1,7 +1,7 @@
 {
   "language": "go",
   "spec_repo": "harshmaru7/openapi-sdk",
-  "spec_sha": "c8fe0b1be2aefdd6ad886e739333ead9d0403660",
-  "generated_at": "2026-05-29T09:20:59Z",
-  "generator_workflow_run": "26628963917"
+  "spec_sha": "fdc2d7c0d7099553f2d8652e1cf0fd6b3bbaa174",
+  "generated_at": "2026-05-29T10:09:25Z",
+  "generator_workflow_run": "26631157534"
 }
