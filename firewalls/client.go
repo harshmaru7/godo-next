@@ -35,6 +35,7 @@ func NewClient(options *core.RequestOptions) *Client {
 }
 
 // To list all of the firewalls available on your account, send a GET request to `/v2/firewalls`.
+// Each entry includes the firewall's inbound/outbound rules, the Droplets and tags it's applied to, and pending state changes. Results are paginated — use `per_page` and `page`.
 func (c *Client) List(
 	ctx context.Context,
 	request *godonext.FirewallsListRequest,

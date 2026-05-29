@@ -1,69 +1,6 @@
 {
   "mappings": [
     {
-      "id": "af0c68d2-d7df-427b-9906-3341cad284d6",
-      "name": "List 1-Click Applications - All 1-Click Applications",
-      "request": {
-        "urlPathTemplate": "/v2/1-clicks",
-        "method": "GET",
-        "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
-          }
-        }
-      },
-      "response": {
-        "status": 200,
-        "body": "{\n  \"1_clicks\": [\n    {\n      \"slug\": \"monitoring\",\n      \"type\": \"kubernetes\"\n    },\n    {\n      \"slug\": \"wordpress-18-04\",\n      \"type\": \"droplet\"\n    }\n  ]\n}",
-        "headers": {
-          "Content-Type": "application/json"
-        }
-      },
-      "uuid": "af0c68d2-d7df-427b-9906-3341cad284d6",
-      "persistent": true,
-      "priority": 3,
-      "metadata": {
-        "mocklab": {
-          "created": {
-            "at": "2020-01-01T00:00:00.000Z",
-            "via": "SYSTEM"
-          }
-        }
-      },
-      "postServeActions": []
-    },
-    {
-      "id": "b4064523-e5be-4667-ad6d-32eaa72456d0",
-      "name": "Install Kubernetes 1-Click Applications - Install a 1-Click Application",
-      "request": {
-        "urlPathTemplate": "/v2/1-clicks/kubernetes",
-        "method": "POST",
-        "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
-          }
-        }
-      },
-      "response": {
-        "status": 200,
-        "body": "{\n  \"message\": \"Successfully kicked off addon job.\"\n}",
-        "headers": {
-          "Content-Type": "application/json"
-        }
-      },
-      "uuid": "b4064523-e5be-4667-ad6d-32eaa72456d0",
-      "persistent": true,
-      "priority": 3,
-      "metadata": {
-        "mocklab": {
-          "created": {
-            "at": "2020-01-01T00:00:00.000Z",
-            "via": "SYSTEM"
-          }
-        }
-      }
-    },
-    {
       "id": "e3c45787-e017-48fe-a752-74c782c0c5ce",
       "name": "Get User Information - default",
       "request": {
@@ -23040,6 +22977,6 @@
     }
   ],
   "meta": {
-    "total": 633
+    "total": 631
   }
 }
