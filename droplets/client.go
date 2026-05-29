@@ -40,6 +40,9 @@ func NewClient(options *core.RequestOptions) *Client {
 // set to an array containing objects each representing a Droplet. These will
 // contain the standard Droplet attributes.
 //
+// Note: results are paginated. Use `per_page` and `page` to walk through large
+// fleets, and check `meta.total` for the full count across all pages.
+//
 // ### Filtering Results by Tag
 //
 // It's possible to request filtered results by including certain query parameters.

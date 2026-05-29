@@ -35,6 +35,7 @@ func NewClient(options *core.RequestOptions) *Client {
 }
 
 // To list all of the VPCs on your account, send a GET request to `/v2/vpcs`.
+// Each entry includes the VPC's name, region, IP range, and whether it's the default for that region. Use `per_page` and `page` to paginate; `meta.total` carries the full count.
 func (c *Client) List(
 	ctx context.Context,
 	request *godonext.VpcsListRequest,
