@@ -18,6 +18,7 @@ type RequestOption interface {
 // to be used directly; use the option package instead.
 type RequestOptions struct {
 	BaseURL                    string
+	Environment                interface{}
 	HTTPClient                 HTTPClient
 	HTTPHeader                 http.Header
 	BodyProperties             map[string]interface{}
@@ -149,6 +150,15 @@ type WithoutRetriesOption struct{}
 
 func (w *WithoutRetriesOption) applyRequestOptions(opts *RequestOptions) {
 	opts.DisableRetries = true
+}
+
+// EnvironmentOption implements the RequestOption interface.
+type EnvironmentOption struct {
+	Environment interface{}
+}
+
+func (e *EnvironmentOption) applyRequestOptions(opts *RequestOptions) {
+	opts.Environment = e.Environment
 }
 
 // TokenOption implements the RequestOption interface.
