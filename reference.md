@@ -4511,6 +4511,7 @@ client.CdnEndpoints.CdnPurgeCache(
 <dd>
 
 To list all of the certificates available on your account, send a GET request to `/v2/certificates`.
+Each entry includes the certificate's name, type (custom or Let's Encrypt), SHA-1 fingerprint, and expiration. Results are paginated — use `per_page` and `page`.
 </dd>
 </dl>
 </dd>
