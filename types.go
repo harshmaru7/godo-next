@@ -11797,6 +11797,210 @@ func (n NetworkV6Type) Ptr() *NetworkV6Type {
 }
 
 var (
+	oneClicksFieldSlug = big.NewInt(1 << 0)
+	oneClicksFieldType = big.NewInt(1 << 1)
+)
+
+type OneClicks struct {
+	// The slug identifier for the 1-Click application.
+	Slug string `json:"slug" url:"slug"`
+	// The type of the 1-Click application.
+	Type string `json:"type" url:"type"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (o *OneClicks) GetSlug() string {
+	if o == nil {
+		return ""
+	}
+	return o.Slug
+}
+
+func (o *OneClicks) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+func (o *OneClicks) GetExtraProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.extraProperties
+}
+
+func (o *OneClicks) require(field *big.Int) {
+	if o.explicitFields == nil {
+		o.explicitFields = big.NewInt(0)
+	}
+	o.explicitFields.Or(o.explicitFields, field)
+}
+
+// SetSlug sets the Slug field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (o *OneClicks) SetSlug(slug string) {
+	o.Slug = slug
+	o.require(oneClicksFieldSlug)
+}
+
+// SetType sets the Type field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (o *OneClicks) SetType(type_ string) {
+	o.Type = type_
+	o.require(oneClicksFieldType)
+}
+
+func (o *OneClicks) UnmarshalJSON(data []byte) error {
+	type unmarshaler OneClicks
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*o = OneClicks(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *o)
+	if err != nil {
+		return err
+	}
+	o.extraProperties = extraProperties
+	o.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (o *OneClicks) MarshalJSON() ([]byte, error) {
+	type embed OneClicks
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*o),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, o.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (o *OneClicks) String() string {
+	if o == nil {
+		return "<nil>"
+	}
+	if len(o.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(o.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(o); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", o)
+}
+
+var (
+	oneClicksCreateFieldAddonSlugs  = big.NewInt(1 << 0)
+	oneClicksCreateFieldClusterUUID = big.NewInt(1 << 1)
+)
+
+type OneClicksCreate struct {
+	// An array of 1-Click Application slugs to be installed to the Kubernetes cluster.
+	AddonSlugs []string `json:"addon_slugs" url:"addon_slugs"`
+	// A unique ID for the Kubernetes cluster to which the 1-Click Applications will be installed.
+	ClusterUUID string `json:"cluster_uuid" url:"cluster_uuid"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (o *OneClicksCreate) GetAddonSlugs() []string {
+	if o == nil {
+		return nil
+	}
+	return o.AddonSlugs
+}
+
+func (o *OneClicksCreate) GetClusterUUID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ClusterUUID
+}
+
+func (o *OneClicksCreate) GetExtraProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.extraProperties
+}
+
+func (o *OneClicksCreate) require(field *big.Int) {
+	if o.explicitFields == nil {
+		o.explicitFields = big.NewInt(0)
+	}
+	o.explicitFields.Or(o.explicitFields, field)
+}
+
+// SetAddonSlugs sets the AddonSlugs field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (o *OneClicksCreate) SetAddonSlugs(addonSlugs []string) {
+	o.AddonSlugs = addonSlugs
+	o.require(oneClicksCreateFieldAddonSlugs)
+}
+
+// SetClusterUUID sets the ClusterUUID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (o *OneClicksCreate) SetClusterUUID(clusterUUID string) {
+	o.ClusterUUID = clusterUUID
+	o.require(oneClicksCreateFieldClusterUUID)
+}
+
+func (o *OneClicksCreate) UnmarshalJSON(data []byte) error {
+	type unmarshaler OneClicksCreate
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*o = OneClicksCreate(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *o)
+	if err != nil {
+		return err
+	}
+	o.extraProperties = extraProperties
+	o.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (o *OneClicksCreate) MarshalJSON() ([]byte, error) {
+	type embed OneClicksCreate
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*o),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, o.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (o *OneClicksCreate) String() string {
+	if o == nil {
+		return "<nil>"
+	}
+	if len(o.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(o.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(o); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", o)
+}
+
+var (
 	opensearchConnectionFieldURI      = big.NewInt(1 << 0)
 	opensearchConnectionFieldHost     = big.NewInt(1 << 1)
 	opensearchConnectionFieldPort     = big.NewInt(1 << 2)
