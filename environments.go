@@ -2,12 +2,21 @@
 
 package api
 
+// Environment defines the environment with multiple base URLs.
+type Environment struct {
+	Base       string
+	Production string
+}
+
 // Environments defines all of the API environments.
 // These values can be used with the WithBaseURL
 // RequestOption to override the client's default environment,
 // if any.
 var Environments = struct {
-	Production string
+	Production Environment
 }{
-	Production: "https://api.digitalocean.com",
+	Production: Environment{
+		Base:       "https://api.digitalocean.com",
+		Production: "https://inference.do-ai.run",
+	},
 }
